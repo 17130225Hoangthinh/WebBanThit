@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<meta charset="utf-8"/>
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row banner">
+			<!-- carousel -->
+			<div class="col-xs-8">
+				<div class="panel panel-default" style="margin-top: 20px;">
+					<div class="panel-body">
+						<div id="carousel-example-generic" class="carousel slide"
+							data-ride="carousel">
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0"
+									class="active"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+							</ol>
+
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img
+										src="/image/banner1.jpg"
+										alt="..." />
+									<div class="carousel-caption">
+										<h4>Thịt bò nhập khẩu tươi ngon</h4>
+										<p>Thịt bò là thực phẩm giàu protein chất lượng cao có tác dụng duy trì và phát triển khối lượng cơ bắp. Ngoài ra, thịt bò còn là nguồn cung cấp vitamin và chất khoáng đa dạng như vitamin B12, kẽm, sắt... 
+										cũng như một số hoạt chất tính sinh học (taurine, creatine...).</p>
+									</div>
+								</div>
+								<div class="item">
+									<img
+										src="/image/banner2.jpg"
+										alt="..." />
+									<div class="carousel-caption">
+										<h4>Cá hồi nhập khẩu tươi ngon</h4>
+										<p>Cá Hồi là một trong những loại cá rất phổ biến và được nhiều người ưa chuộng. Thịt cá hồi không chỉ thơm ngon mà còn chứa nhiều dưỡng
+										 chất rất tốt cho sức khỏe còn người. Điều đặc biệt ở đây là giá trị kinh tế của trứng cá hồi cao gấp mấy lần thịt của chúng.</p>
+									</div>
+								</div>
+								<div class="item">
+									<img
+										src="/image/banner3.jpg"
+										alt="..." />
+									<div class="carousel-caption">
+										<h4>Thịt heo đông lạnh tươi ngon</h4>
+										<p>Thịt lợn cũng chứa nhiều selenium, kẽm là chất cần thiết cho một bộ não và hệ thống miễn dịch khỏe mạnh. Creatine trong thịt là một nguồn năng lượng cho cơ bắp. Nhiều nghiên cứu chỉ ra rằng
+										 nó có thể cải thiện sự tăng trưởng và duy trì cơ bắp. Vitamin B3 rất quan trọng cho sự tăng trưởng và chuyển hóa.</p>
+									</div>
+								</div>
+								...
+							</div>
+
+							<!-- Controls -->
+							<a class="left carousel-control" href="#carousel-example-generic"
+								role="button" data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a> <a class="right carousel-control"
+								href="#carousel-example-generic" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"
+								aria-hidden="true"></span> <span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<img src="/image/logo.png" class="img-responsive" />
+			</div>
+		</div>
+
+		<hr />
+
+		<div class="row">
+			<div class="col-xs-4">
+				<div clas="panel panel-default">
+					<div class="panel-body">
+						<a th:href="@{/productshelf}"><img src="/image/Panel-Body/1.jpg" class="img-responsive" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div clas="panel panel-default">
+					<div class="panel-body">
+						<a th:href="@{/hours}"><img src="/image/Panel-Body/hours.png" class="img-responsive" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div clas="panel panel-default">
+					<div class="panel-body">
+						<a th:href="@{/faq}"><img src="/image/Panel-Body/faq.png" class="img-responsive" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<div class="home-headline">
+				<span>Sản phẩm nổi bật</span>
+			</div>
+			<hr style="margin-top: -15px;" />
+		</div>
+
+
+		<div class="row">
+			<div id="featured-products" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#featured-products" data-slide-to="0" class="active"></li>
+					<li data-target="#featured-products" data-slide-to="1"></li>
+					<li data-target="#featured-products" data-slide-to="2"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/1.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/lobster/1.jpg"/>
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/chicken/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/5.jpg" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/7.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/lobster/5.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/1.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/7.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/6.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/6.jpg" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/1.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/lobster/1.jpg"/>
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/beef/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/chicken/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/3.jpg" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/pig/5.jpg" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Controls -->
+				<a class="left carousel-control" href="##featured-products"
+					role="button" data-slide="prev"> <span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Quay lại</span>
+				</a> <a class="right carousel-control" href="##featured-products"
+					role="button" data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Tiếp theo</span>
+				</a>
+			</div>
+		</div>
+
+	</div>
+	<!-- end of container -->
+
+<div th:replace="common/header :: footer"/>
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

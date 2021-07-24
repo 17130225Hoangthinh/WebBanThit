@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<meta charset="utf-8" />
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/product/updateProduct}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						Cập nhật thông tin sản phẩm<span style="font-size: small"> * là các trường bắt buộc</span>
+					</legend>
+					
+					<input hidden="hidden" name="id" th:value="${product.id}" />
+
+
+					<!-- title -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="title">* Tên sản phẩm</label>
+
+						<div class="col-md-8">
+							<input type="text" name="title" class="form-control" id="title"
+								th:value="${product.title}" required="required" placeholder="Tên sản phẩm" />
+							<span class="help-block">Tên của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- provider -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="provider">*
+							Nhà cung cấp</label>
+						<div class="col-md-8">
+							<input type="text" name="provider" class="form-control" id="provider"
+								th:value="${product.provider}" required="required"
+								placeholder="Nhà cung cấp" /> <span class="help-block">Tên nhà cung cấp của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- deliveryCompany -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="deliveryCompany">Đơn vị nhập hàng</label>
+						<div class="col-md-8">
+							<input type="text" name="deliveryCompany" class="form-control"
+								id="deliveryCompany" th:value="${product.deliveryCompany}"
+								placeholder="Đơn vị nhập hàng" /> <span class="help-block">Tên đơn vị vận chuyển hàng đến cửa hàng</span>
+						</div>
+					</div>
+
+					<!-- import date -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="importDate">Ngày nhập hàng</label>
+						<div class="col-md-8">
+							<input type="date" class="form-control" id="importDate"
+								name="importDate" th:value="${product.importDate}"
+								placeholder="Ngày nhập hàng" /> <span class="help-block">Ngày nhập sản phẩm về cửa hàng</span>
+						</div>
+					</div>
+
+					<!-- origin -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="origin">Xuất xứ</label>
+						<div class="col-md-8">
+							<select th:value="${product.origin}" id="origin" name="origin"
+								class="form-control">
+								<option value="Úc">Úc</option>
+								<option value="Mỹ">Mỹ</option>
+								<option value="Nhật">Nhật</option>
+								<option value="New Zealand">New Zealand</option>
+								<option value="Việt Nam">Việt Nam</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- category -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="category">*
+							Danh mục sản phẩm</label>
+						<div class="col-md-8">
+							<select th:value="${product.category}" id="category" name="category"
+								class="form-control">
+								<option value="" selected="selected" disabled="disabled">Chọn
+									...</option>
+								<option value="Thịt bò"
+									th:selected="(${product.category}=='Thịt bò')">Thịt bò</option>
+								<option value="Thịt heo"
+									th:selected="(${product.category}=='Thịt heo')">Thịt heo</option>
+								<option value="Thịt gà"
+									th:selected="(${product.category}=='Thịt gà')">Thịt gà</option>
+								<option value="Cá hồi"
+									th:selected="(${product.category}=='Cá hồi')">Cá hồi</option>
+								<option value="Tôm hùm"
+									th:selected="(${product.category}=='Tôm hùm')">Tôm hùm
+									</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- pages -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="weight">Khối lượng</label>
+
+						<div class="col-md-8">
+							<input type="number" name="weight" class="form-control"
+								id="weight" th:value="${product.weight}"
+								placeholder="Khối lượng" /> <span class="help-block">Khối lượng và quy cách đóng gói của mỗi sản phẩm
+								</span>
+						</div>
+					</div>
+
+					<!-- format -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="format">Quy cách đóng gói</label>
+						<div class="col-md-8">
+							<select th:value="${product.format}" id="format" name="format"
+								class="form-control">
+								<option value="Túi">Túi</option>
+								<option value="Thùng xốp">Thùng xốp</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- isbn -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="isbn">Mã ISBN</label>
+
+						<div class="col-md-8">
+							<input type="text" name="isbn" class="form-control" id="isbn"
+								th:value="${product.isbn}" placeholder="Mã ISBN" /> <span
+								class="help-block">Mã vạch của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- shipping weight -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="shippingWeight">Khối lượng giao hàng
+							</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<input th:value="${product.shippingWeight}" type="number" step="0.01"
+									name="shippingWeight" class="form-control" id="shippingWeight"
+									placeholder="Shipping Weight" /> <span
+									class="input-group-addon">Kg</span>
+							</div>
+							<span class="help-block">Khối lượng giao hàng của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- list price -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="listPrice">Giá gốc
+							</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon">VND</span> <input
+									th:value="${product.listPrice}" type="number" name="listPrice" step="1000"
+									class="form-control" id="listPrice" placeholder="Giá gốc" />
+							</div>
+							<span class="help-block">Giá gốc của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- our price -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="ourPrice">Giá khuyến mãi
+							</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon">VND</span> <input
+									th:value="${product.ourPrice}" type="number" name="ourPrice" step="1000"
+									class="form-control" id="ourPrice" placeholder="Giá khuyến mãi" />
+							</div>
+							<span class="help-block">Giá khuyến mãi của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- in stock number -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="inStockNumber">Số lượng hàng sẵn có
+							</label>
+						<div class="col-md-8">
+							<input th:value="${product.inStockNumber}" type="number"
+								name="inStockNumber" class="form-control" id="inStockNumber"
+								placeholder="Số lượng hàng sẵn có" /> <span
+								class="help-block">Số lượng hàng còn trong kho của sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- status of product -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="status">Trạng thái</label>
+						<div class="col-md-8">
+							<label><input value="true" type="radio" name="active"
+								checked="checked" /> Kích hoạt </label> <label><input
+								value="false" type="radio" name="active" />
+								Hủy kích hoạt </label> <span class="help-block">Trạng thái của sản phẩm
+								</span>
+						</div>
+					</div>
+
+					<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="description">Mô tả</label>
+						<div class="col-md-8">
+							<textarea name="description" rows="5" class="form-control"
+								id="description" th:value="${product.description}"
+								placeholder="Mô tả" ></textarea>
+							<span class="help-block">Mô tả về sản phẩm</span>
+						</div>
+					</div>
+
+					<!-- upload image -->
+					<div class="form-group">
+						<div class="col-md-2">
+							<label for="productImage">Tải ảnh lên</label>
+						</div>
+						<div class="col-md-8">
+							<input id="productImage" type="file" name="productImage"
+								th:value="${product.productImage}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Cập nhật</button>
+							<a class="btn btn-danger" th:href="@{/product/productInfo(id=${product.id})}">Hủy</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

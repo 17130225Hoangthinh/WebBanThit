@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<meta charset="utf-8" />
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<h2 class="section-headline">
+						<span
+							th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Tất cả sản phẩm'"></span>
+					</h2>
+				</h2>
+			</div>
+			<div class="col-xs-4">
+				<img src="/image/logo.png" class="img-responsive" />
+			</div>
+		</div>
+		<hr
+			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+		<img class="img-responsive" src="/image/wood.png"
+			style="margin-top: -75px;" />
+
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-xs-3">
+				<h3><label for="category">Danh mục sản phẩm</label></h3>
+				<div class="list-group" id="category">
+					<a th:href="@{/productshelf(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">Tất cả</a>
+					<a th:href="@{/searchByCategory(category='Thịt bò')}" th:classappend="${activeThitbo}? 'active'" class="list-group-item">Thịt bò</a>
+					<a th:href="@{/searchByCategory(category='Thịt heo')}" th:classappend="${activeThitheo}? 'active'" class="list-group-item">Thịt heo</a>
+					<a th:href="@{/searchByCategory(category='Thịt gà')}" th:classappend="${activeThitga}? 'active'" class="list-group-item">Thịt gà</a>
+					<a th:href="@{/searchByCategory(category='Cá hồi')}" th:classappend="${activeCahoi}? 'active'" class="list-group-item">Cá hồi</a>
+					<a th:href="@{/searchByCategory(category='Tôm hùm')}" th:classappend="${activeTomhum}? 'active'" class="list-group-item">Tôm hùm</a>
+				</div>
+			</div>
+			
+			<div class="col-xs-9">
+				<div th:if="${emptyList}">
+					<h5 style="font-style: italic;">
+						Không có kết quả nào, vui lòng thử lại.</h5>
+				</div>
+
+				<table border="0" id="productList">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="product-item" data-th-each="product : ${productList}" >
+							<td>
+								<div th:if="${product != null}">
+									<div class="row" style="margin-bottom: 50px;">
+										<div class="col-xs-3">
+											<a th:href="@{/productDetail?id=}+${product.id}"><img 
+												class="img-responsive shelf-product"
+												th:src="#{adminPath}+@{/image/product/}+${product.id}+'.png'" /></a>
+										</div>
+										<div class="col-xs-9" >
+											<a th:href="@{/productDetail?id=}+${product.id}"><h4
+													th:text="${product.title}"></h4></a> <span
+												th:text="${product.importDate}"></span>
+											<p th:text="${product.provider}"></p>
+											<a th:href="@{/productDetail?id=}+${product.id}"><span
+												th:text="${#strings.capitalize(product.format)}"></span></a> <span
+												th:text="${product.weight}"><span> kg</span></span><br />
+
+											<a th:href="@{/productDetail?id=}+${product.id}"><span
+												style="font-size: x-large; color: #db3208;">VND<span
+													th:text="${#numbers.formatDecimal(product.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
+
+											<span style="text-decoration: line-through;">VND<span
+												th:text="${#numbers.formatDecimal(product.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+											<p th:utext="${#strings.abbreviate(product.description, 1000)}"></p>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+<div th:replace="common/header :: footer"/>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+	
+	<script>
+		$(document).ready(function() {
+			$('#productList').DataTable({
+				"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
+				"ordering":false,
+				stateSave:true
+			});
+			
+			$("#productList").on('page.dt', function() {
+				$('html, body').animate({
+					scrollTop: $('#productList').offset().top
+				}, 200);
+			});
+		});
+	</script>
+</body>
+</html>

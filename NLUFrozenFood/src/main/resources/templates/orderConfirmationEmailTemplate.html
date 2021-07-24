@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="Utf-8"/>
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/css/non-responsive.css" rel="stylesheet" />
+
+<link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<style>
+	table {
+	border-collapse: collapse;
+	}
+	
+	table, th, td {
+	border:1px solid black;}
+</style>
+</head>
+<body>
+<p>Xin chào <span th:text="${user.firstName}"></span>,</p>
+<br/>
+<p>Cảm ơn bạn đã mua sắm từ cửa hàng của chúng tôi. Chúng tôi hy vọng bạn đã có một thời gian tốt với dịch vụ của chúng tôi</p>
+<p>Số đơn đặt hàng của bạn là: <strong>#<span th:text="${order.id}"></span></strong>. Đây là chi tiết đơn đặt hàng của bạn:</p>
+<h2>Chi tiết đơn hàng cần thanh toán #<span th:text="${order.id}"></span></h2>
+<hr/>
+
+<table>
+	<tr>
+		<th>Chi tiết hóa đơn</th>
+		<th>Thông tin thanh toán</th>
+		<th>Địa chỉ giao hàng</th>
+	</tr>
+	<tr>
+		<td>
+			<span th:text="${order.billingAddress.billingAddressName}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressCity}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressState}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressZipcode}"></span><br/>
+		</td>
+		<td>
+			<span th:text="${order.payment.holderName}"></span><br/>
+			<span th:text="${order.payment.type}"></span><br/>
+			<span th:text="${order.payment.cardNumber}"></span><br/>
+			<span th:text="${order.payment.expiryMonth}"></span><br/>
+			<span th:text="${order.payment.expiryYear}"></span><br/>
+		</td>
+		<td>
+			<span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br/>
+		</td>
+	</tr>
+</table>
+
+<h3><strong>Tổng quan đơn hàng</strong></h3>
+<table>
+<thead>
+	<tr>
+		<td><strong>Tên sản phẩm</strong></td>
+		<td class="text-center"><strong>Giá sản phẩm</strong></td>
+		<td class="text-center"><strong>Số lượng sản phẩm</strong></td>
+		<td class="text-right"><strong>Tổng</strong></td>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="cartItem : ${cartItemList}">
+		<td><span data-th-text="${cartItem.product.title}"></span></td>
+		<td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
+		<td class="text-center" data-th-text="${cartItem.qty}"></td>
+		<td class="text-right" data-th-text="${cartItem.subtotal}"></td>
+	</tr>
+	<tr>
+		<td class="highrow"></td>
+		<td class="highrow"></td>
+		<td class="highrow text-center"><strong>Tổng đơn hàng tạm tính</strong></td>
+		<td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+	</tr>
+	<tr>
+		<td class="emptyrow"></td>
+		<td class="emptyrow"></td>
+		<td class="emptyrow text-center"><strong>Thuế</strong></td>
+		<td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal*0.06,0,2)}"></td>
+	</tr>
+	<tr>
+		<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+		<td class="emptyrow"></td>
+		<td class="emptyrow text-center"><strong>Tổng</strong></td>
+		<td th:with="total=${order.orderTotal+order.orderTotal*0.06}"
+            data-th-text="${#numbers.formatDecimal(total, 0, 2)}"
+            class="emptyrow text-right">
+        </td>
+	</tr>
+</tbody>
+</table>
+
+<br/>
+<p>Best,</p>
+<p>NLU Frozen Food</p>
+<p>Since 2017</p>
+</body>
+</html>

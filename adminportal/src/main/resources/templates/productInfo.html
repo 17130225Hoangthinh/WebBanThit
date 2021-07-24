@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<meta charset="utf-8" />
+<body>
+	<div th:replace="common/header :: navbar" />
+	
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/product/productList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Quay lại</a></li>
+				<li><a th:href="@{/product/updateProduct?id=}+${product.id}">Chỉnh sửa</a></li>
+			</ol>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="panel panel-default">
+				<div class="panel-body">
+					<img th:src="@{/image/product/}+${product.id}+'.png'" class="img-responsive center-block" />
+				</div>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<h3 th:text="${product.title}"></h3>
+				<div class="row">
+					<div class="col-xs-6">
+						<p><strong>Nhà cung cấp: </strong><span th:text="${product.provider}"></span></p>
+						<p><strong>Đơn vị nhập hàng: </strong><span th:text="${product.deliveryCompany}"></span></p>
+						<p><strong>Ngày nhập hàng: </strong><span th:text="${product.importDate}"></span></p>
+						<p><strong>Xuất xứ: </strong><span th:text="${product.origin}"></span></p>
+						<p><strong>Danh mục sản phẩm: </strong><span th:text="${product.category}"></span></p>
+						<p><strong>Khối lượng: </strong><span th:text="${product.weight}"></span></p>
+					</div>
+					<div class="col-xs-6">
+						<p><strong>Quy cách đóng gói: </strong><span th:text="${product.format}"></span></p>
+						<p><strong>Mã ISBN: </strong><span th:text="${product.isbn}"></span></p>
+						<p><strong>Khối lượng giao hàng: </strong><span th:text="${product.shippingWeight}"></span></p>
+						<p><strong>Giá gốc: </strong><span th:text="${product.listPrice}"></span></p>
+						<p><strong>Giá khuyến mãi: </strong><span th:text="${product.ourPrice}"></span></p>
+						<p><strong>Số lượng hàng có sẵn: </strong><span th:text="${product.inStockNumber}"></span></p>
+					</div>
+				</div>
+				
+				<p><Strong>Mô tả: </Strong><span th:utext="${product.description}"></span></p>
+			</div>
+			
+		</div>
+	</div>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

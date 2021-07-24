@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>NLU Frozen Food</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/css/non-responsive.css" rel="stylesheet" />
+
+<!-- data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<link rel="icon" href="/image/applie-touch-icon.png" />
+</head>
+
+<body>
+	<div th:fragment="navbar">
+		<div class="page-top"
+			style="width: 100%; height: 20px; background-color: #f46b42;"></div>
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">NLU Frozen Food</a>
+				</div>
+				<div id="navbar">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="dropdown"><a th:href="@{/productshelf}"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">Menu <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a th:href="@{/productshelf}">DANH SÁCH SẢN PHẨM</a></li>
+								<li><a th:href="@{/hours}">GIỜ MỞ CỬA</a></li>
+								<li><a th:href="@{/faq}">FAQ</a></li>
+
+							</ul></li>
+						<form class="navbar-form" th:action="@{/searchProduct}" method="post">
+							<div class="form-group">
+								<input type="text" name="keyword" class="form-control"
+									placeholder="Tên sản phẩm" />
+							</div>
+							<button type="submit" class="btn btn-default">Tìm kiếm</button>
+						</form>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/shoppingCart/cart}">GIỎ HÀNG</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">TÀI KHOẢN
+								</a></li>
+						<li><a sec:authorize="isAuthenticated()"
+							th:href="@{/myProfile}">TÀI KHOẢN</a></li>
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">ĐĂNG XUẤT</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>
+
+	<div th:fragment="footer">
+		<br />
+		<br />
+		<footer>
+			<div class="row">
+				<div class="col-xs-3 footerleft">
+					<div class="logofooter">
+						<a th:href="@{/}"><img class="img-responsive"
+							src="/image/logo.png" style="width: 200px;" /></a>
+					</div>
+					<p>
+						NLU Frozen Food. <br /> Chất lượng là trên hết.
+						.
+					</p>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">LIÊN HỆ</h6>
+					<ul class="post">
+						<p>
+							<i class="fa fa-map-pin"></i> 123 Quốc lộ 1<br /> Linh Trung TP Thủ Đức, TPHCM
+							
+						</p>
+						<p>
+							<i class="fa fa-phone"></i> Số điện thoại : 0123456789
+						</p>
+						<p>
+							<i class="fa fa-envelope"></i> E-mail : nlufrozenfood@gmail.com
+						</p>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">LIÊN KẾT</h6>
+					<ul class="footer-ul">
+						<li><a href="/templates/policyProduct.html"> Chính sách pháp lý</a></li>
+						<li><a href="#"> Điều khoản sử dụng</a></li>
+						<li><a href="#"> FAQ</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">GIỜ MỞ CỬA</h6>
+					<div class="post">
+						<p>Thứ 2 - Thứ 7: 09:00 - 23:00</p>
+						<p>Chủ nhật: 10:00 - 22:00</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<div class="copyright">
+			<div class="col-md-6">
+				<p>© 2021 - All Rights Reserved</p>
+			</div>
+			<div class="col-md-6">
+				<ul class="bottom_ul">
+					<li><a href="#">Về chúng tôi</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">Liên hệ với chúng tôi</a></li>
+					<li><a href="#">Địa chỉ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+
+		<script th:src="@{/js/scripts.js}"></script>
+
+		<!-- data table -->
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+	</div>
+</body>
+</html>
